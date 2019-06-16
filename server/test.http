@@ -1,0 +1,13 @@
+@url=http://localhost:3000/admin/api
+
+
+
+### 获取分类
+GET {{url}}/category
+### 新增分类
+POST {{url}}/category
+Content-Type: application/json
+
+{
+    "name":"hero4"
+}
