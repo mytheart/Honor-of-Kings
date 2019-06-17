@@ -1,14 +1,15 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <h1>物品列表</h1>
     <el-table :data="items" style="width: 50%">
       <el-table-column prop="_id" label="id"></el-table-column>
-      <el-table-column prop="parent.name" label="父级分类"></el-table-column>
-      <el-table-column prop="name" label="分类" width="180"></el-table-column>
+      <el-table-column prop="name" label="物品名称" width="180"></el-table-column>
+      <el-table-column prop="parent.name" label="图标"></el-table-column>
+
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
-            @click="$router.push(`/categories/create/${scope.row._id}`)"
+            @click="$router.push(`/items/create/${scope.row._id}`)"
             type="text"
             size="small"
           >编辑</el-button>
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     fetch() {
-      this.$http.get("/categories").then(res => {
+      this.$http.get("/items").then(res => {
         this.items = res.data;
       });
     },
@@ -39,7 +40,7 @@ export default {
         type: "warning"
       }).then(() => {
 
-        this.$http.delete(`/categories/${row._id}`).then((res) => {
+        this.$http.delete(`/items/${row._id}`).then((res) => {
 
           this.$message({
             type: "success",

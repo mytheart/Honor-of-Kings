@@ -1,13 +1,28 @@
-@url=http://localhost:3000/admin/api
+@url=http://localhost:3000/admin/api/rest
 
 
 
-### 获取分类
-GET {{url}}/category
+### 获取全部分类
+GET {{url}}/categories
 ### 新增分类
-POST {{url}}/category
+POST {{url}}/categories
 Content-Type: application/json
 
 {
-    "name":"hero4"
+    "name":"hero6",
+    "parent":"5d051466b52f3615082d0e81"
+}
+
+### 删除某个分类
+DELETE  {{url}}/categories/5d0513f3138e0826481e995a
+
+### 得到某个分类
+GET {{url}}/categories/5d0600defcb0333bf48864af
+
+### 编辑更新分类
+PUT {{url}}/categories/5d0600defcb0333bf48864af
+Content-Type: application/json
+
+{
+    "name":"更新后"
 }
