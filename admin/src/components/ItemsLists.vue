@@ -4,7 +4,12 @@
     <el-table :data="items" style="width: 50%">
       <el-table-column prop="_id" label="id"></el-table-column>
       <el-table-column prop="name" label="物品名称" width="180"></el-table-column>
-      <el-table-column prop="parent.name" label="图标"></el-table-column>
+
+      <el-table-column label="图标">
+        <template slot-scope="scope">
+          <img :src="scope.row.icon" alt="" style="height:3rem">
+        </template>
+      </el-table-column>
 
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
@@ -29,7 +34,7 @@ export default {
   },
   methods: {
     fetch() {
-      this.$http.get("/items").then(res => {
+      this.$http.get("/rest/items").then(res => {
         this.items = res.data;
       });
     },
@@ -39,9 +44,7 @@ export default {
         confirmButtonText: "确定",
         type: "warning"
       }).then(() => {
-
-        this.$http.delete(`/items/${row._id}`).then((res) => {
-
+        this.$http.delete(`/rest/items/${row._id}`).then(res => {
           this.$message({
             type: "success",
             message: "删除成功!"

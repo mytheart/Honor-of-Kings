@@ -1,14 +1,20 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <h1>英雄列表</h1>
     <el-table :data="items" style="width: 50%">
       <el-table-column prop="_id" label="id"></el-table-column>
-      <el-table-column prop="parent.name" label="父级分类"></el-table-column>
-      <el-table-column prop="name" label="分类" width="180"></el-table-column>
+      <el-table-column prop="name" label="名称" width="180"></el-table-column>
+
+      <el-table-column label="图标">
+        <template slot-scope="scope">
+          <img :src="scope.row.avator" alt="" style="height:3rem">
+        </template>
+      </el-table-column>
+
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
-            @click="$router.push(`/categories/create/${scope.row._id}`)"
+            @click="$router.push(`/heros/create/${scope.row._id}`)"
             type="text"
             size="small"
           >编辑</el-button>
@@ -28,7 +34,7 @@ export default {
   },
   methods: {
     fetch() {
-      this.$http.get("/rest/categories").then(res => {
+      this.$http.get("/rest/heros").then(res => {
         this.items = res.data;
       });
     },
@@ -38,9 +44,7 @@ export default {
         confirmButtonText: "确定",
         type: "warning"
       }).then(() => {
-
-        this.$http.delete(`/rest/categories/${row._id}`).then((res) => {
-
+        this.$http.delete(`/rest/heros/${row._id}`).then(res => {
           this.$message({
             type: "success",
             message: "删除成功!"

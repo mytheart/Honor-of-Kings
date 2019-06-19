@@ -42,13 +42,13 @@ export default {
   },
   methods: {
     fetch() {
-      this.$http.get(`/categories/${this.id}`).then(res => {
+      this.$http.get(`/rest/categories/${this.id}`).then(res => {
 
         this.model = res.data
       });
     },
     fetchParents(){
-      this.$http.get('/categories').then(res=>{
+      this.$http.get('/rest/categories').then(res=>{
         this.parents=res.data.filter(ele=>{
           if(!ele.parent){
             return true;
@@ -60,10 +60,10 @@ export default {
       let res;
       if (this.id) {
         // 编辑分类
-        res = await this.$http.put(`/categories/${this.id}`, this.model);
+        res = await this.$http.put(`/rest/categories/${this.id}`, this.model);
       } else {
         // 新建分类
-        res = await this.$http.post("/categories", this.model);
+        res = await this.$http.post("/rest/categories", this.model);
       }
 
       this.$message({

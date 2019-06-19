@@ -7,23 +7,27 @@
             <i class="el-icon-message"></i>内容管理
           </template>
           <el-menu-item-group>
-               <template slot="title">分类</template>
+            <template slot="title">分类</template>
             <el-menu-item index="/categories/create">新建分类</el-menu-item>
             <el-menu-item index="/categories/lists">分类列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-               <template slot="title">物品</template>
+            <template slot="title">物品</template>
             <el-menu-item index="/items/create">新建物品</el-menu-item>
             <el-menu-item index="/items/lists">物品列表</el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">英雄</template>
+            <el-menu-item index="/heros/create">新建英雄</el-menu-item>
+            <el-menu-item index="/heros/lists">英雄列表</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
-     
       </el-menu>
     </el-aside>
 
     <el-container>
       <el-main>
-          <router-view></router-view>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -32,14 +36,7 @@
 <script>
 export default {
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
-    };
-    return {
-      tableData: Array(20).fill(item)
-    };
+    return {};
   }
 };
 </script>

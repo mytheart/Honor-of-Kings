@@ -42,13 +42,20 @@ module.exports = (app) => {
 
 
     app.use('/admin/api/rest/:resourse',async (req,res,next)=>{
-
         // 将 categories 转换为 Category
         const modelName=require('inflection').classify(req.params.resourse)
-
         req.Model=require(`../../models/${modelName}`)
-
         next()
-
     }, router)
+
+
+    
+    const multer=require('multer')
+    const upload=multer({dest:__dirname+'/../../uploads'})
+    app.post('/admin/api/upload',upload.single('file'),async (req,res)=>{
+        const file=req.file
+        file.url="http://localhost:3000/uploads/"+file.filename
+        res.send(file)
+    })
+
 }
