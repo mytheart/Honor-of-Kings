@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Hero = mongoose.model('Hero', new mongoose.Schema({
+const Schema = new mongoose.Schema({
     name: {
         type: String,
         unique: true
@@ -37,6 +37,6 @@ const Hero = mongoose.model('Hero', new mongoose.Schema({
         hero: { type: mongoose.SchemaTypes.ObjectId, ref: 'Hero' },
         description: { type: String }
     }]
-}))
+})
 
-module.exports = Hero
+module.exports = mongoose.model('Hero', Schema)

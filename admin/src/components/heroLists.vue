@@ -7,7 +7,7 @@
 
       <el-table-column label="图标">
         <template slot-scope="scope">
-          <img :src="scope.row.avator" alt="" style="height:3rem">
+          <img :src="scope.row.avator" alt style="height:3rem">
         </template>
       </el-table-column>
 

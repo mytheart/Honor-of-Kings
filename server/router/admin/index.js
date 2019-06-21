@@ -1,29 +1,28 @@
 module.exports = (app) => {
     const express = require('express')
     const router = express.Router()
-    // const Category = require('../../models/Category')
 
     // 新建分类
-    router.post('', async (req, res) => {
+    router.post('/', async (req, res) => {
         const result = await req.Model.create(req.body)
         res.send(result)
     })
 
     // 获取全部分类
     router.get('/', async (req, res) => {
-        const queryOptions={}
-        if(req.Model.modelName==='Category'){
-            queryOptions.populate='parent'
+        const queryOptions = {}
+        if (req.Model.modelName === 'Category') {
+            queryOptions.populate = 'parent'
         }
 
-        const result = await req.Model.find().setOptions(queryOptions).limit(10)
+        const result = await req.Model.find().setOptions(queryOptions)
         res.send(result)
     })
 
     // 删除某个分类 
     router.delete('/:id', async (req, res) => {
         const result = await req.Model.findByIdAndDelete(req.params.id)
-        res.send({ success: true })
+        res.send({ success: '删除成功' })
     })
 
 
@@ -34,27 +33,27 @@ module.exports = (app) => {
     })
 
     // 更新分类（根据id）
-    router.put('/:id',async (req,res)=>{
-        const result=await req.Model.findByIdAndUpdate(req.params.id,req.body)
-        res.send({success:true})
+    router.put('/:id', async (req, res) => {
+        const result = await req.Model.findByIdAndUpdate(req.params.id, req.body)
+        res.send({ success: '更新成功' })
     })
 
 
 
-    app.use('/admin/api/rest/:resourse',async (req,res,next)=>{
+    app.use('/admin/api/rest/:resourse', async (req, res, next) => {
         // 将 categories 转换为 Category
-        const modelName=require('inflection').classify(req.params.resourse)
-        req.Model=require(`../../models/${modelName}`)
+        const modelName = require('inflection').classify(req.params.resourse)
+        req.Model = require(`../../models/${modelName}`)
         next()
     }, router)
 
 
-    
-    const multer=require('multer')
-    const upload=multer({dest:__dirname+'/../../uploads'})
-    app.post('/admin/api/upload',upload.single('file'),async (req,res)=>{
-        const file=req.file
-        file.url="http://localhost:3000/uploads/"+file.filename
+    // 上传图片接口
+    const multer = require('multer')
+    const upload = multer({ dest: __dirname + '/../../uploads' })
+    app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+        const file = req.file
+        file.url = "http://localhost:3000/uploads/" + file.filename
         res.send(file)
     })
 

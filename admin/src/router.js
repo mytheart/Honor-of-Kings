@@ -7,7 +7,8 @@ import itemsCreate from './components/ItemsCreate.vue'
 import itemsLists from './components/ItemsLists.vue'
 import herosCreate from './components/heroCreate.vue'
 import herosLists from './components/heroLists.vue'
-
+import articleCreate from './components/articleCreate.vue'
+import articleLists from './components/articleLists.vue'
 
 
 Vue.use(Router)
@@ -68,6 +69,22 @@ export default new Router({
           path: '/heros/create/:id',
           name: 'heros-edit',
           component: herosCreate,
+          props: true
+        },
+        {
+          path: '/articles/create',
+          name: 'articles-create',
+          component: articleCreate,
+        },
+        {
+          path: '/articles/lists',
+          name: 'articles-lists',
+          component: articleLists
+        },
+        {
+          path: '/articles/create/:id',
+          name: 'articles-edit',
+          component: articleCreate,
           props: true
         }
       ]
