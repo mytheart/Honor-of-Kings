@@ -17,6 +17,7 @@
         <el-input v-model="model.title"></el-input>
       </el-form-item>
       <el-form-item label="内容">
+        <!-- 富文本编辑器 -->
         <vue-editor useCustomImageHandler @imageAdded="handleImageAdded" v-model="model.content"></vue-editor>
       </el-form-item>
       <el-form-item>
@@ -82,6 +83,7 @@ export default {
 
       this.$router.push("/articles/lists");
     },
+    // 文章中的图片上传
     handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();
       formData.append("file", file);
@@ -89,7 +91,7 @@ export default {
       this.$http
         .post("/upload", formData)
         .then(result => {
-          let url = result.data.url; // Get url from response
+          const url = result.data.url; // Get url from response
           Editor.insertEmbed(cursorLocation, "image", url);
           resetUploader();
         })

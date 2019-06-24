@@ -7,7 +7,7 @@
 
       <el-table-column label="图标">
         <template slot-scope="scope">
-          <img :src="scope.row.icon" alt="" style="height:3rem">
+          <img :src="scope.row.icon" alt style="height:3rem">
         </template>
       </el-table-column>
 
@@ -52,7 +52,7 @@ export default {
 
           this.fetch();
         });
-      });
+      }).catch(err => {});
     }
   },
   created() {

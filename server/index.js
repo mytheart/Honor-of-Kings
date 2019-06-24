@@ -1,8 +1,10 @@
 const express=require('express')
 const app=express()
+app.set('secret','123456asc')
 
 app.use(require('cors')())
 app.use(express.json())
+
 
 // 静态图片托（绝对路径）
 app.use('/uploads',express.static(__dirname+'/uploads'))

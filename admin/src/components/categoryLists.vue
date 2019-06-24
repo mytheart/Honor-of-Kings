@@ -48,7 +48,7 @@ export default {
 
           this.fetch();
         });
-      });
+      }).catch(err => {});;
     }
   },
   created() {

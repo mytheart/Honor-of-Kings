@@ -97,6 +97,7 @@
             <el-input type="textarea" v-model="model.teamTips"></el-input>
           </el-form-item>
         </el-tab-pane>
+        
         <el-tab-pane label="技能" name="skills">
           <el-button size="small" type="text" @click="model.skills.push({})">
             <i class="el-icon-plus"></i>添加技能
