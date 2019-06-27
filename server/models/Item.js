@@ -1,16 +1,8 @@
 const mongoose = require('mongoose')
 
-const Schema = new mongoose.Schema({
-    name: {
-        type: String,
-        unique: true
-    },
-    icon: {
-        type: String
-    }
+const schema = new mongoose.Schema({
+  name: { type: String },
+  icon: { type: String },
 })
 
-
-module.exports = mongoose.model('Item', Schema)
-
-
+module.exports = mongoose.model('Item', schema)

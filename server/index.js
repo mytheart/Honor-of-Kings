@@ -1,20 +1,17 @@
-const express=require('express')
-const app=express()
-app.set('secret','123456asc')
+const express = require("express")
+
+const app = express()
+
+app.set('secret', 'i2u34y12oi3u4y8')
 
 app.use(require('cors')())
 app.use(express.json())
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
-
-// 静态图片托（绝对路径）
-app.use('/uploads',express.static(__dirname+'/uploads'))
-
-// 连接数据库
 require('./plugins/db')(app)
+require('./routes/admin')(app)
+require('./routes/web')(app)
 
-// 子路由（admin页面的路由）
-require('./router/admin/index')(app)
-
-app.listen(3000,(req,res)=>{
-    console.log('server runing in localhost:3000')
-})
+app.listen(3000, () => {
+  console.log('server running in localhost:3000');
+});

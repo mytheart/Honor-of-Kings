@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
 
-const Schema = new mongoose.Schema({
-    title: {
-        type: String,
-    },
-    content: { type: String },
-    categories: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }]
+const schema = new mongoose.Schema({
+  categories: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }],
+  title: { type: String },
+  body: { type: String },
+}, {
+  timestamps: true
 })
 
-
-module.exports = mongoose.model('Article', Schema)
-
-
+module.exports = mongoose.model('Article', schema)
