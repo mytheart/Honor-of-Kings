@@ -2,16 +2,19 @@ import Vue from 'vue'
 import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
+import http from './http'
 
 import './style.css'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-import http from './http'
-Vue.prototype.$http = http
+Vue.prototype.$http = http;
 
+
+
+// 设置一个全局的代码块
 Vue.mixin({
-  computed: {
+  computed: { 
     uploadUrl(){
       return this.$http.defaults.baseURL + '/upload'
     }

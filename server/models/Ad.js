@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// 广告位
 const schema = new mongoose.Schema({
   name: { type: String },
   items: [{
