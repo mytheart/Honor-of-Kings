@@ -97,6 +97,9 @@ export default {
     return {
       tableData: Array(20).fill(item)
     };
-  }
+  },
+  created() {
+    console.log(1)
+  },
 };
 </script>

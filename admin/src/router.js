@@ -23,7 +23,7 @@ import AdminUserList from './views/AdminUserList.vue'
 
 Vue.use(Router)
 
-const routers =  [
+const routes =  [
   { path: '/login', name: 'login', component: Login, meta: { isPublic: true } },
   {
     path: '/',
@@ -59,8 +59,8 @@ const routers =  [
 ]
 
 const router = new Router({
-  mode:'history',
-  routers,
+  mode: 'history',
+  routes,
 })
 
 // 路由全局前置守卫
